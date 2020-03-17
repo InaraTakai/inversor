@@ -1,4 +1,4 @@
-/* Data de submissao: COLOCAR DATA NAO ESQUECER
+/* Data de submissao: 17/03/2020
  * Nome: Inara Takashi
  * RA: 174975
  */
@@ -33,20 +33,20 @@ void empilhar(struct Localizar *p, char * dados){
   p->tamanho++;
 }
 
-int desempilhar (struct Localizar *p){
+void desempilhar(struct Localizar *p){
   Elemento *p_elemento;
   if (p->tamanho == 0){
-    return -1;
+    return;
   }
   p_elemento = p->inicio;
   p->inicio = p->inicio->proximo;
   free (p_elemento->dados);
   free (p_elemento);
   p->tamanho--;
-  return 0;
+  return;
 }
 
-void mostrar(struct Localizar *p){
+void imprimir(struct Localizar *p){
   Elemento *atual;
   int i;
   atual = p->inicio;
@@ -59,8 +59,8 @@ void mostrar(struct Localizar *p){
 
 int main() {
   struct Localizar pilha;
-  int i,j,x;
-  char letra;
+  int i,j,x; //indices
+  char letra; // variavel auxilar para separar as letras do buffer
   char buffer[tam_buffer];
 
 
@@ -75,7 +75,7 @@ int main() {
     if (letra != ' ' && letra != '\n'){
       empilhar(&pilha, &letra);
     }else if (letra == ' ' || letra == '\n'){
-      mostrar(&pilha);
+      imprimir(&pilha);
       for(j=x;j<i;j++){
        desempilhar(&pilha);
      }
@@ -88,5 +88,6 @@ int main() {
      x=i+1;
    }
  }
+
  return 0;
 }
